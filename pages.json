@@ -1,0 +1,99 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "游戏时光",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/games/games",
+			"style": {
+				"navigationBarTitleText": "游戏列表",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/game-detail/game-detail",
+			"style": {
+				"navigationBarTitleText": "游戏详情"
+			}
+		},
+		{
+			"path": "pages/add-game/add-game",
+			"style": {
+				"navigationBarTitleText": "添加游戏"
+			}
+		},
+		{
+			"path": "pages/categories/categories",
+			"style": {
+				"navigationBarTitleText": "分类浏览"
+			}
+		},
+		{
+			"path": "pages/favorites/favorites",
+			"style": {
+				"navigationBarTitleText": "我的收藏",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索游戏"
+			}
+		},
+		{
+			"path": "pages/settings/settings",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		},
+		{
+			"path": "pages/backups/backups",
+			"style": {
+				"navigationBarTitleText": "本地备份"
+			}
+		},
+		{
+			"path": "pages/statistics/statistics",
+			"style": {
+				"navigationBarTitleText": "数据统计"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "游戏时光",
+		"navigationBarBackgroundColor": "#667eea",
+		"backgroundColor": "#F5F7FA"
+	},
+	"tabBar": {
+		"custom": true,
+		"color": "#999999",
+		"selectedColor": "#667eea",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/games/games",
+				"text": "游戏"
+			},
+			{
+				"pagePath": "pages/categories/categories",
+				"text": "分类"
+			},
+			{
+				"pagePath": "pages/favorites/favorites",
+				"text": "收藏"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}
