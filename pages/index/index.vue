@@ -184,11 +184,9 @@ export default {
     },
     
     navigateToGames(status) {
-      let url = '/pages/games/games';
-      if (status) {
-        url += `?status=${status}`;
-      }
-      uni.navigateTo({ url });
+      uni.switchTab({
+        url: '/pages/games/games'
+      });
     },
     
     navigateToAddGame() {
@@ -222,7 +220,7 @@ export default {
 .container {
   min-height: 100vh;
   background: #F5F7FA;
-  padding-bottom: 140rpx;
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
 }
 
 /* 头部区域 */

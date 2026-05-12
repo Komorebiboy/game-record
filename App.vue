@@ -5,7 +5,6 @@ import './utils/animations.css';
 export default {
 	onLaunch: function() {
 		console.log('App Launch');
-		// 初始化主题
 		this.initTheme();
 	},
 	onShow: function() {
@@ -19,7 +18,6 @@ export default {
 			const theme = getThemeName();
 			this.applyThemeToPage(theme);
 			
-			// 监听主题变化
 			onThemeChange((newTheme) => {
 				this.applyThemeToPage(newTheme);
 			});
@@ -38,25 +36,18 @@ export default {
 </script>
 
 <style>
-/*每个页面公共css */
 @import './utils/animations.css';
 
 page {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 	transition: background-color 0.3s ease;
-}
-
-/* 浅色模式默认样式 */
-page {
 	background-color: #F5F7FA;
 }
 
-/* 深色模式样式 */
 page[data-theme="dark"] {
 	background-color: #121212;
 }
 
-/* 全局过渡动画 */
 .container,
 .section,
 .card,
@@ -66,7 +57,6 @@ page[data-theme="dark"] {
 	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 深色模式通用样式 */
 page[data-theme="dark"] .container {
 	background-color: #121212 !important;
 }

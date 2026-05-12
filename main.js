@@ -9,10 +9,12 @@ Vue.config.productionTip = false
 import CustomTabbar from './components/custom-tabbar/custom-tabbar.vue'
 import ShareCard from './components/share-card/share-card.vue'
 import LazyImage from './components/lazy-image/lazy-image.vue'
+import SimpleIcon from './components/simple-icon/simple-icon.vue'
 
 Vue.component('custom-tabbar', CustomTabbar)
 Vue.component('share-card', ShareCard)
 Vue.component('lazy-image', LazyImage)
+Vue.component('uni-icons', SimpleIcon)
 
 App.mpType = 'app'
 const app = new Vue({
@@ -26,12 +28,14 @@ import { createSSRApp } from 'vue'
 import CustomTabbar from './components/custom-tabbar/custom-tabbar.vue'
 import ShareCard from './components/share-card/share-card.vue'
 import LazyImage from './components/lazy-image/lazy-image.vue'
+import SimpleIcon from './components/simple-icon/simple-icon.vue'
 
 export function createApp() {
   const app = createSSRApp(App)
   app.component('custom-tabbar', CustomTabbar)
   app.component('share-card', ShareCard)
   app.component('lazy-image', LazyImage)
+  app.component('uni-icons', SimpleIcon)
   return {
     app
   }

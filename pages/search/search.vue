@@ -1,5 +1,10 @@
 <template>
   <view class="container">
+    <!-- 返回按钮 -->
+    <view class="back-btn" @click="goBack">
+      <text class="back-icon">←</text>
+    </view>
+
     <!-- 搜索栏 -->
     <view class="search-section">
       <view class="search-box">
@@ -224,6 +229,10 @@ export default {
       uni.navigateTo({
         url: `/pages/game-detail/game-detail?id=${id}`
       });
+    },
+
+    goBack() {
+      uni.navigateBack();
     }
   }
 };
@@ -234,6 +243,9 @@ export default {
   min-height: 100vh;
   background: #F5F7FA;
 }
+
+.back-btn { position: fixed; top: 40rpx; left: 30rpx; z-index: 100; width: 72rpx; height: 72rpx; background: rgba(0,0,0,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.back-icon { font-size: 32rpx; color: #FFFFFF; }
 
 /* 搜索栏 */
 .search-section {

@@ -7,11 +7,9 @@
       :class="{ active: currentIndex === index }"
       @click="switchTab(item, index)"
     >
-      <uni-icons 
-        :type="currentIndex === index ? item.selectedIcon : item.icon" 
-        :color="currentIndex === index ? selectedColor : color" 
-        size="24"
-      />
+      <text class="tab-icon" :style="{ color: currentIndex === index ? selectedColor : color, fontSize: '24px' }">
+        {{ item.icon }}
+      </text>
       <text class="tab-text" :style="{ color: currentIndex === index ? selectedColor : color }">
         {{ item.text }}
       </text>
@@ -31,26 +29,27 @@ export default {
         {
           pagePath: '/pages/index/index',
           text: '首页',
-          icon: 'home',
-          selectedIcon: 'home-filled'
+          icon: '🏠'
         },
         {
           pagePath: '/pages/games/games',
           text: '游戏',
-          icon: 'videocam',
-          selectedIcon: 'videocam-filled'
+          icon: '🎬'
         },
         {
           pagePath: '/pages/categories/categories',
           text: '分类',
-          icon: 'list',
-          selectedIcon: 'list-filled'
+          icon: '📋'
         },
         {
           pagePath: '/pages/favorites/favorites',
           text: '收藏',
-          icon: 'star',
-          selectedIcon: 'star-filled'
+          icon: '⭐'
+        },
+        {
+          pagePath: '/pages/treasure/treasure',
+          text: '百宝箱',
+          icon: '🎁'
         }
       ]
     };
@@ -58,7 +57,7 @@ export default {
   
   computed: {
     isTabPage() {
-      const pages = ['/pages/index/index', '/pages/games/games', '/pages/categories/categories', '/pages/favorites/favorites'];
+      const pages = ['/pages/index/index', '/pages/games/games', '/pages/categories/categories', '/pages/favorites/favorites', '/pages/treasure/treasure'];
       const currentPage = this.getCurrentPage();
       return pages.includes(currentPage);
     }
@@ -129,6 +128,10 @@ export default {
   justify-content: center;
   height: 100%;
   padding: 0 40rpx;
+}
+
+.tab-icon {
+  line-height: 1;
 }
 
 .tab-text {

@@ -40,6 +40,12 @@
 			}
 		},
 		{
+			"path": "pages/treasure/treasure",
+			"style": {
+				"navigationBarTitleText": "百宝箱"
+			}
+		},
+		{
 			"path": "pages/search/search",
 			"style": {
 				"navigationBarTitleText": "搜索游戏"
@@ -92,6 +98,10 @@
 			{
 				"pagePath": "pages/favorites/favorites",
 				"text": "收藏"
+			},
+			{
+				"pagePath": "pages/treasure/treasure",
+				"text": "百宝箱"
 			}
 		]
 	},

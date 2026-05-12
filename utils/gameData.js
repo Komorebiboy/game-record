@@ -37,124 +37,37 @@ const StatusConfig = {
 const defaultGames = [
   {
     id: 'game_001',
-    name: '塞尔达传说：王国之泪',
-    nameEn: 'The Legend of Zelda: Tears of the Kingdom',
-    cover: 'https://images.unsplash.com/photo-1612287230217-969b698c8d13?w=400',
-    platforms: ['switch'],
-    genres: ['动作', '冒险', 'RPG'],
-    developer: 'Nintendo',
-    releaseDate: '2023-05-12',
-    description: '塞尔达传说系列的最新作，拥有极高的自由度和创造力。',
+    name: '守墓人',
+    nameEn: 'Graveyard Keeper',
+    cover: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=400',
+    platforms: ['pc'],
+    genres: ['模拟', '冒险', '独立游戏'],
+    developer: 'Lazy Bear Games',
+    releaseDate: '2018-08-15',
+    description: '一款中世纪风格的模拟经营游戏，玩家扮演一名守墓人，经营自己的墓地。',
     
     // 个人记录
-    myStatus: GameStatus.COMPLETED,
-    myRating: 10,
-    myReview: '神作！自由度极高，建造系统让人上瘾。神庙设计巧妙，剧情也很感人。',
-    startDate: '2023-05-15',
-    completeDate: '2023-08-20',
-    playTime: '150小时',
+    myStatus: GameStatus.PLAYING,
+    myRating: 8,
+    myReview: '非常有趣的模拟经营游戏，充满黑色幽默，经营要素丰富。',
+    startDate: '2024-05-01',
+    completeDate: '',
+    playTime: '30小时',
     isFavorite: true,
     
     // 攻略心得
     guides: [
       {
         id: 'guide_001',
-        title: '全神庙位置攻略',
-        content: '海拉鲁大陆共有152个神庙...\n\n1. 初始空岛区域有4个神庙\n2. 地面区域分布着大部分神庙\n3. 地下区域也有一些隐藏神庙',
-        createTime: '2023-06-01',
-        updateTime: '2023-06-15'
-      },
-      {
-        id: 'guide_002',
-        title: '实用建造技巧',
-        content: 'MK2飞行器是最实用的交通工具...\n\n材料需求：\n- 风扇机 x2\n- 操纵杆 x1\n- 木板 x1',
-        createTime: '2023-06-10',
-        updateTime: '2023-06-10'
+        title: '初期发展攻略',
+        content: '1. 先清理墓地，获取基础资源\n2. 种点胡萝卜和小麦\n3. 制作简单的药水赚钱',
+        createTime: '2024-05-05',
+        updateTime: '2024-05-05'
       }
     ],
     
-    createTime: '2023-05-15',
-    updateTime: '2023-08-20'
-  },
-  {
-    id: 'game_002',
-    name: '艾尔登法环',
-    nameEn: 'Elden Ring',
-    cover: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
-    platforms: ['pc', 'ps5', 'xbox'],
-    genres: ['动作', 'RPG'],
-    developer: 'FromSoftware',
-    releaseDate: '2022-02-25',
-    description: '魂系游戏的集大成之作，开放世界与硬核动作的完美结合。',
-    
-    myStatus: GameStatus.PLAYING,
-    myRating: 9,
-    myReview: '难度很高但很有成就感，世界观非常吸引人。目前正在挑战女武神。',
-    startDate: '2024-01-10',
-    completeDate: '',
-    playTime: '80小时',
-    isFavorite: true,
-    
-    guides: [
-      {
-        id: 'guide_003',
-        title: '新手开荒建议',
-        content: '1. 先探索啜泣半岛，难度较低\n2. 建议先拿灵马，方便跑图\n3. 多收集黄金种子增加血瓶',
-        createTime: '2024-01-12',
-        updateTime: '2024-01-12'
-      }
-    ],
-    
-    createTime: '2024-01-10',
-    updateTime: '2024-01-10'
-  },
-  {
-    id: 'game_003',
-    name: '博德之门3',
-    nameEn: "Baldur's Gate 3",
-    cover: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400',
-    platforms: ['pc', 'ps5'],
-    genres: ['RPG', '策略'],
-    developer: 'Larian Studios',
-    releaseDate: '2023-08-03',
-    description: '年度游戏，CRPG的巅峰之作，自由度极高。',
-    
-    myStatus: GameStatus.WANT_TO_PLAY,
-    myRating: 0,
-    myReview: '',
-    startDate: '',
-    completeDate: '',
-    playTime: '',
-    isFavorite: false,
-    
-    guides: [],
-    
-    createTime: '2024-02-01',
-    updateTime: '2024-02-01'
-  },
-  {
-    id: 'game_004',
-    name: '原神',
-    nameEn: 'Genshin Impact',
-    cover: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
-    platforms: ['pc', 'ps5', 'mobile'],
-    genres: ['RPG', '冒险'],
-    developer: 'miHoYo',
-    releaseDate: '2020-09-28',
-    description: '开放世界冒险游戏，二次元风格的代表作。',
-    
-    myStatus: GameStatus.DROPPED,
-    myRating: 7,
-    myReview: '画面精美，但后期太肝了，抽卡机制也让人疲惫。',
-    startDate: '2021-03-01',
-    completeDate: '',
-    playTime: '200小时',
-    isFavorite: false,
-    
-    guides: [],
-    
-    createTime: '2021-03-01',
-    updateTime: '2022-06-01'
+    createTime: '2024-05-01',
+    updateTime: '2024-05-10'
   }
 ];
 
@@ -162,10 +75,31 @@ const defaultGames = [
 function getGames() {
   try {
     const data = uni.getStorageSync(STORAGE_KEY);
-    return data ? JSON.parse(data) : defaultGames;
+    if (!data) {
+      saveGames(defaultGames);
+      return defaultGames;
+    }
+    const parsed = JSON.parse(data);
+    if (!Array.isArray(parsed) || parsed.length === 0) {
+      saveGames(defaultGames);
+      return defaultGames;
+    }
+    return parsed;
   } catch (e) {
     console.error('获取游戏数据失败:', e);
+    saveGames(defaultGames);
     return defaultGames;
+  }
+}
+
+// 清除缓存数据
+function clearStorage() {
+  try {
+    uni.removeStorageSync(STORAGE_KEY);
+    return true;
+  } catch (e) {
+    console.error('清除缓存失败:', e);
+    return false;
   }
 }
 
@@ -348,6 +282,7 @@ function getRecentGames(limit = 5) {
 
 // 重置为默认数据
 function resetToDefault() {
+  uni.removeStorageSync(STORAGE_KEY);
   saveGames(defaultGames);
   return defaultGames;
 }
@@ -372,5 +307,6 @@ export {
   filterByPlatform,
   searchGames,
   getRecentGames,
-  resetToDefault
+  resetToDefault,
+  clearStorage
 };

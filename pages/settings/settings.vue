@@ -1,5 +1,10 @@
 <template>
   <view class="container">
+    <!-- 返回按钮 -->
+    <view class="back-btn" @click="goBack">
+      <text class="back-icon">←</text>
+    </view>
+
     <!-- 头部 -->
     <view class="header">
       <text class="header-title">设置</text>
@@ -12,46 +17,46 @@
       <view class="menu-list">
         <view class="menu-item" @click="exportJSON">
           <view class="menu-icon" style="background: #E3F2FD;">
-            <uni-icons type="download" size="20" color="#2196F3"></uni-icons>
+            <text class="icon-text">⬇️</text>
           </view>
           <view class="menu-content">
             <text class="menu-name">导出JSON</text>
             <text class="menu-desc">导出完整数据备份</text>
           </view>
-          <uni-icons type="right" size="16" color="#CCC"></uni-icons>
+          <text class="arrow-icon">→</text>
         </view>
 
         <view class="menu-item" @click="exportCSV">
           <view class="menu-icon" style="background: #E8F5E9;">
-            <uni-icons type="paperclip" size="20" color="#4CAF50"></uni-icons>
+            <text class="icon-text">📎</text>
           </view>
           <view class="menu-content">
             <text class="menu-name">导出Excel (CSV)</text>
             <text class="menu-desc">导出为表格格式</text>
           </view>
-          <uni-icons type="right" size="16" color="#CCC"></uni-icons>
+          <text class="arrow-icon">→</text>
         </view>
 
         <view class="menu-item" @click="showImportModal">
           <view class="menu-icon" style="background: #FFF3E0;">
-            <uni-icons type="upload" size="20" color="#FF9800"></uni-icons>
+            <text class="icon-text">⬆️</text>
           </view>
           <view class="menu-content">
             <text class="menu-name">导入数据</text>
             <text class="menu-desc">从JSON文件恢复</text>
           </view>
-          <uni-icons type="right" size="16" color="#CCC"></uni-icons>
+          <text class="arrow-icon">→</text>
         </view>
 
         <view class="menu-item" @click="navigateToBackups">
           <view class="menu-icon" style="background: #F3E5F5;">
-            <uni-icons type="folder-add" size="20" color="#9C27B0"></uni-icons>
+            <text class="icon-text">📁</text>
           </view>
           <view class="menu-content">
             <text class="menu-name">本地备份</text>
             <text class="menu-desc">管理本地备份 ({{ backupCount }}个)</text>
           </view>
-          <uni-icons type="right" size="16" color="#CCC"></uni-icons>
+          <text class="arrow-icon">→</text>
         </view>
       </view>
     </view>
@@ -62,13 +67,13 @@
       <view class="menu-list">
         <view class="menu-item" @click="shareData">
           <view class="menu-icon" style="background: #E8EAF6;">
-            <uni-icons type="redo" size="20" color="#667eea"></uni-icons>
+            <text class="icon-text">🔄</text>
           </view>
           <view class="menu-content">
             <text class="menu-name">分享我的游戏数据</text>
             <text class="menu-desc">生成分享文本</text>
           </view>
-          <uni-icons type="right" size="16" color="#CCC"></uni-icons>
+          <text class="arrow-icon">→</text>
         </view>
       </view>
     </view>
@@ -79,7 +84,7 @@
       <view class="menu-list">
         <view class="menu-item">
           <view class="menu-icon" style="background: #ECEFF1;">
-            <uni-icons type="color" size="20" color="#607D8B"></uni-icons>
+            <text class="icon-text">🎨</text>
           </view>
           <view class="menu-content">
             <text class="menu-name">深色模式</text>
@@ -96,7 +101,7 @@
       <view class="menu-list">
         <view class="menu-item">
           <view class="menu-icon" style="background: #E1F5FE;">
-            <uni-icons type="info" size="20" color="#03A9F4"></uni-icons>
+            <text class="icon-text">ℹ️</text>
           </view>
           <view class="menu-content">
             <text class="menu-name">版本</text>
@@ -106,7 +111,7 @@
 
         <view class="menu-item" @click="clearAllData">
           <view class="menu-icon" style="background: #FFEBEE;">
-            <uni-icons type="trash" size="20" color="#F44336"></uni-icons>
+            <text class="icon-text">🗑️</text>
           </view>
           <view class="menu-content">
             <text class="menu-name" style="color: #F44336;">清除所有数据</text>
@@ -117,13 +122,13 @@
     </view>
 
     <!-- 导入弹窗 -->
-    <uni-popup ref="importPopup" type="center">
-      <view class="popup-content">
-        <view class="popup-header">
-          <text class="popup-title">导入数据</text>
-          <text class="popup-close" @click="closeImportModal">✕</text>
+    <view class="modal-overlay" v-if="showImportModalFlag" @click="closeImportModal">
+      <view class="modal-content" @click.stop>
+        <view class="modal-header">
+          <text class="modal-title">导入数据</text>
+          <text class="modal-close" @click="closeImportModal">✕</text>
         </view>
-        <view class="popup-body">
+        <view class="modal-body">
           <textarea
             class="import-textarea"
             v-model="importData"
@@ -131,12 +136,12 @@
             maxlength="100000"
           />
         </view>
-        <view class="popup-footer">
+        <view class="modal-footer">
           <button class="btn-cancel" @click="closeImportModal">取消</button>
           <button class="btn-confirm" @click="confirmImport">导入</button>
         </view>
       </view>
-    </uni-popup>
+    </view>
 
     <!-- 自定义 TabBar -->
     <custom-tabbar />
@@ -158,7 +163,8 @@ export default {
     return {
       isDarkMode: false,
       backupCount: 0,
-      importData: ''
+      importData: '',
+      showImportModalFlag: false
     };
   },
 
@@ -177,7 +183,6 @@ export default {
       this.isDarkMode = getThemeName() === 'dark';
     },
 
-    // 导出JSON
     exportJSON() {
       try {
         const data = exportToJSON();
@@ -190,7 +195,6 @@ export default {
       }
     },
 
-    // 导出CSV
     exportCSV() {
       try {
         const data = exportToCSV();
@@ -203,7 +207,6 @@ export default {
       }
     },
 
-    // 复制到剪贴板
     copyToClipboard(data, successMsg) {
       uni.setClipboardData({
         data: data,
@@ -222,18 +225,15 @@ export default {
       });
     },
 
-    // 显示导入弹窗
     showImportModal() {
       this.importData = '';
-      this.$refs.importPopup.open();
+      this.showImportModalFlag = true;
     },
 
-    // 关闭导入弹窗
     closeImportModal() {
-      this.$refs.importPopup.close();
+      this.showImportModalFlag = false;
     },
 
-    // 确认导入
     confirmImport() {
       if (!this.importData.trim()) {
         uni.showToast({
@@ -266,14 +266,12 @@ export default {
       });
     },
 
-    // 跳转到备份管理
     navigateToBackups() {
       uni.navigateTo({
         url: '/pages/backups/backups'
       });
     },
 
-    // 分享数据
     shareData() {
       try {
         const text = generateShareText();
@@ -295,7 +293,6 @@ export default {
       }
     },
 
-    // 切换深色模式
     toggleDarkMode(e) {
       const newTheme = toggleTheme();
       this.isDarkMode = newTheme.name === 'dark';
@@ -305,7 +302,6 @@ export default {
         icon: 'none'
       });
 
-      // 重新加载页面以应用主题
       setTimeout(() => {
         uni.reLaunch({
           url: '/pages/settings/settings'
@@ -313,7 +309,6 @@ export default {
       }, 500);
     },
 
-    // 清除所有数据
     clearAllData() {
       uni.showModal({
         title: '危险操作',
@@ -338,6 +333,10 @@ export default {
           }
         }
       });
+    },
+
+    goBack() {
+      uni.navigateBack();
     }
   }
 };
@@ -350,7 +349,9 @@ export default {
   padding-bottom: 140rpx;
 }
 
-/* 头部 */
+.back-btn { position: fixed; top: 40rpx; left: 30rpx; z-index: 100; width: 72rpx; height: 72rpx; background: rgba(0,0,0,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.back-icon { font-size: 32rpx; color: #FFFFFF; }
+
 .header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 60rpx 40rpx;
@@ -369,7 +370,6 @@ export default {
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* 分区 */
 .section {
   margin: 30rpx;
   background: #FFFFFF;
@@ -385,7 +385,6 @@ export default {
   color: #333;
 }
 
-/* 菜单列表 */
 .menu-list {
   padding: 0 20rpx 20rpx;
 }
@@ -413,6 +412,10 @@ export default {
   margin-right: 24rpx;
 }
 
+.icon-text {
+  font-size: 28rpx;
+}
+
 .menu-content {
   flex: 1;
   display: flex;
@@ -431,14 +434,32 @@ export default {
   color: #999;
 }
 
-/* 弹窗 */
-.popup-content {
+.arrow-icon {
+  font-size: 24rpx;
+  color: #CCCCCC;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
   background: #FFFFFF;
   border-radius: 24rpx;
   width: 640rpx;
+  max-height: 80vh;
 }
 
-.popup-header {
+.modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -446,19 +467,19 @@ export default {
   border-bottom: 1rpx solid #F0F0F0;
 }
 
-.popup-title {
+.modal-title {
   font-size: 32rpx;
   font-weight: bold;
   color: #333;
 }
 
-.popup-close {
+.modal-close {
   font-size: 36rpx;
   color: #999;
   padding: 10rpx;
 }
 
-.popup-body {
+.modal-body {
   padding: 30rpx;
 }
 
@@ -472,7 +493,7 @@ export default {
   box-sizing: border-box;
 }
 
-.popup-footer {
+.modal-footer {
   display: flex;
   gap: 20rpx;
   padding: 20rpx 30rpx 40rpx;
